@@ -4,7 +4,9 @@ package ca.uwo.nvanbomm.voicebudget;
  * Created by nicho on 1/28/2017.
  */
 
-import Budget.java;
+import java.util.ArrayList;
+
+import ca.uwo.nvanbomm.voicebudget.Budget;
 
 
 public class User {
@@ -16,10 +18,10 @@ public class User {
     User() {
         balance = 10000;
         userBudgets = new ArrayList<Budget>();
-        userBudget.add(new Budget(75*100, "transportation"));
-        userBudget.add(new Budget(150*100, "fun"));
-        userBudget.add(new Budget(100*100, "food"));
-        userBudget.add(new Budget(400*100, "groceries"));
+        //userBudgets.add(new Budget(75*100, "transportation"));
+        //userBudgets.add(new Budget(150*100, "fun"));
+        //userBudgets.add(new Budget(100*100, "food"));
+        //userBudgets.add(new Budget(400*100, "groceries"));
     }
 
     //Check BudgetRemainder(str: budgetName) returns float

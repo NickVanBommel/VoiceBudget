@@ -12,20 +12,27 @@ import org.xml.sax.ErrorHandler;
 public class InputAnalysis{
 
     public ErrorHandler inputErrorHandler;
-    public Handler inputSuccessHandler;
 
-    public InputAnalysis(ErrorHandler myErrorHandler, Handler myHandler)
+    public InputAnalysis(ErrorHandler myErrorHandler)
     {
         inputErrorHandler = myErrorHandler;
-        inputSuccessHandler = myHandler;
+    }
+    public interface SuccessHandler{
+        void onComplete(String response);
     }
 
-    public void analyzeInput(Handler inputHandler)
+    public void analyzeInput(final SuccessHandler inputHandler)
     {
         AsyncTask<Void, Void, String> myTask = new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
                 return "totally did things in the background";
+            }
+
+            @Override
+            protected void onPostExecute(String response)
+            {
+                inputHandler.onComplete(response);
             }
         };
         myTask.execute();

@@ -1,4 +1,4 @@
-package main.java.ca.uwo.nvanbomm.voicebudget;
+package ca.uwo.nvanbomm.voicebudget;
 
 /**
  * Created by andyk on 2017-01-28.

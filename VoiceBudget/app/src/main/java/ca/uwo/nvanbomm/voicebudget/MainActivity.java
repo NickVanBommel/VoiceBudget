@@ -1,6 +1,7 @@
 package ca.uwo.nvanbomm.voicebudget;
 
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,10 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,11 +33,32 @@ public class MainActivity extends AppCompatActivity {
         User currUser = new User();
         ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
+        final InputAnalysis analyzer = new InputAnalysis(new ErrorHandler() {
+            @Override
+            public void warning(SAXParseException exception) throws SAXException {
+
+            }
+
+            @Override
+            public void error(SAXParseException exception) throws SAXException {
+
+            }
+
+            @Override
+            public void fatalError(SAXParseException exception) throws SAXException {
+
+            }
+        });
 
         ibtnAsk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvResponse.setText("Asked something");
+                analyzer.analyzeInput(new InputAnalysis.SuccessHandler() {
+                    @Override
+                    public void onComplete(String response) {
+                        tvResponse.setText(response);
+                    }
+                });
             }
         });
 
