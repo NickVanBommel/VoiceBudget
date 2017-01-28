@@ -33,17 +33,19 @@ public class User {
 
     int GetBudgetLimit(String budgetName){
         for(int i = 0; i < userBudgets.size(); i++){
-            if (userBudgets[i].getName() == budgetName){
-                return userBudgets[i].getLimit();
-            }
+            //if (userBudgets[i].getName() == budgetName){
+                //return userBudgets[i].getLimit();
+            //}
         }
+        return 0;
     }
     int GetBudgetBalance(String budgetName){
         for(int i = 0; i < userBudgets.size(); i++){
-            if (userBudgets[i].getName() == budgetName){
-                return userBudgets[i].getBalance();
-            }
+            //if (userBudgets[i].getName() == budgetName){
+                //return userBudgets[i].getBalance();
+            //}
         }
+        return 0;
     }
 
     int GetBudgetRemainder(String budgetName){
