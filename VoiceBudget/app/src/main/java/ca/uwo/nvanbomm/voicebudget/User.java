@@ -6,4 +6,8 @@ package ca.uwo.nvanbomm.voicebudget;
 
 public class User {
     int balance;
+
+    User() {
+        balance = 10000;
+    }
 }
