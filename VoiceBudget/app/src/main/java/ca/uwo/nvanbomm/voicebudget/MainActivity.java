@@ -76,4 +76,5 @@ public class MainActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
 }
