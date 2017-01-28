@@ -6,7 +6,6 @@ package ca.uwo.nvanbomm.voicebudget;
 
 import java.util.ArrayList;
 
-import ca.uwo.nvanbomm.voicebudget.Budget;
 
 
 public class User {
