@@ -59,42 +59,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final AIConfiguration config = new AIConfiguration("YOUR_ACCESS_TOKEN",
-                AIConfiguration.SupportedLanguages.English,
-                AIConfiguration.RecognitionEngine.System);
-
-        AIButton aiButton = (AIButton) findViewById(R.id.micButton);
-
-        aiButton.initialize(config);
-        aiButton.setResultsListener(new AIButton.AIButtonListener() {
-
-            @Override
-            public void onCancelled(){
-                return;
-            }
-
-            @Override
-            public void onResult(final AIResponse result) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("ApiAi", "onResult");
-                        tvResponse.setText("changed hopefully");
-                    }
-                });
-            }
-
-            @Override
-            public void onError(final AIError error) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("ApiAi", "onError");
-                        // TODO process error here
-                    }
-                });
-            }
-        });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
