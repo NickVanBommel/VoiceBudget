@@ -5,5 +5,5 @@ package ca.uwo.nvanbomm.voicebudget;
  */
 
 public class User {
-    int Balance;
+    int balance;
 }
