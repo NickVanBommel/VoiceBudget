@@ -6,7 +6,7 @@ package ca.uwo.nvanbomm.voicebudget;
 
 
 public class User {
-    float balance;
+    int balance;
     //Define budgets
     ArrayList<Budget> userBudgets;
 
@@ -17,19 +17,24 @@ public class User {
         userBudget.add(new Budget("transportation", 75));
         userBudget.add(new Budget("fun", 150));
         userBudget.add(new Budget("food", 100));
-        userBudget.add(new Budget("groceries", 400);
+        userBudget.add(new Budget("groceries", 400));
     }
 
-    //Get GeneralBalance
-    //Get BudgetBalance(str: budgetName) returns float
     //Check BudgetRemainder(str: budgetName) returns float
     //Check IsFeasiblePurchase(float: cost, str: budgetName) returns bool
 
-    float GetGeneralBalance(){
+    int GetGeneralBalance(){
         return balance;
     }
 
-    float GetBudgetBalance(String budgetName){
+    int GetBudgetLimit(String budgetName){
+        for(int i = 0; i < userBudgets.size(); i++){
+            if (userBudgets[i].getName() == budgetName){
+                return userBudgets[i].getLimit();
+            }
+        }
+    }
+    int GetBudgetBalance(String budgetName){
         for(int i = 0; i < userBudgets.size(); i++){
             if (userBudgets[i].getName() == budgetName){
                 return userBudgets[i].getBalance();
@@ -37,12 +42,19 @@ public class User {
         }
     }
 
-    float GetBudgetRemainder(String budgetName){
-
+    int GetBudgetRemainder(String budgetName){
+        int budgetBalance = GetBudgetBalance(budgetName);
+        int budgetLimit = GetBudgetLimit(budgetName);
+        return budgetLimit - budgetBalance;
     }
 
-    boolean IsFeasiblePurchase(float cost, String budgetName){
-
+    boolean IsFeasiblePurchase(int cost, String budgetName){
+        int budgetBalance = GetBudgetBalance(budgetName);
+        if (cost < budgetBalance){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
