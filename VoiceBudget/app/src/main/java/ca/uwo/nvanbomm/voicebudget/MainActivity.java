@@ -33,20 +33,11 @@ public class MainActivity extends AppCompatActivity {
         User currUser = new User();
         ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
-        final InputAnalysis analyzer = new InputAnalysis(new ErrorHandler() {
+        final InputAnalysis analyzer;
+        analyzer = new InputAnalysis(new InputAnalysis.ErrorHandler() {
             @Override
-            public void warning(SAXParseException exception) throws SAXException {
-
-            }
-
-            @Override
-            public void error(SAXParseException exception) throws SAXException {
-
-            }
-
-            @Override
-            public void fatalError(SAXParseException exception) throws SAXException {
-
+            public void onError(Throwable error) {
+                tvResponse.setText("Failed to configure response");
             }
         });
 

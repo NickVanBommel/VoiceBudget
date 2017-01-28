@@ -20,6 +20,9 @@ public class InputAnalysis{
     public interface SuccessHandler{
         void onComplete(String response);
     }
+    public interface  ErrorHandler {
+        void onError(Throwable error);
+    }
 
     public void analyzeInput(final SuccessHandler inputHandler)
     {
