@@ -11,6 +11,11 @@ public class Budget {
 
     //Constructors-----------------------------------------------------------------------
 
+    /**
+     * Constructor for the Budget class. sets the initial name and limit
+     * @param cLimit the budget limit
+     * @param cName the name of the budget
+     */
     public Budget(int cLimit, String cName){
         limit = cLimit;
         name=cName;
@@ -19,12 +24,15 @@ public class Budget {
 
     //General Functions-------------------------------------------------------------------
 
+    /**
+     * Used to spend the given amount of money. adds to balance
+     * @param amount amount of money to spend
+     */
     public void spend(int amount){
         balance += amount;
     }
 
     //Get/Set functions-------------------------------------------------------------------
-
 
     public int getLimit() {
         return limit;
