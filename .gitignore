@@ -46,6 +46,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+*.iml
 .idea
 VoiceBudget/.idea
-.gradle
+/VoiceBudget/.idea
+*.gradle
