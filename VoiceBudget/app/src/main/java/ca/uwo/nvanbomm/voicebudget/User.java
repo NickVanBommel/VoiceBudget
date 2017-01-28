@@ -29,16 +29,18 @@ public class User {
     int GetBudgetLimit(String budgetName){
         for(int i = 0; i < userBudgets.size(); i++){
             if (userBudgets.get(i).getName() == budgetName){
-                return userBudgets[i].getLimit();
+                return userBudgets.get(i).getLimit();
             }
         }
+        return 0;
     }
     int GetBudgetBalance(String budgetName){
         for(int i = 0; i < userBudgets.size(); i++){
             if (userBudgets.get(i).getName() == budgetName){
-                return userBudgets[i].getBalance();
+                return userBudgets.get(i).getBalance();
             }
         }
+        return 0;
     }
 
     int GetBudgetRemainder(String budgetName){

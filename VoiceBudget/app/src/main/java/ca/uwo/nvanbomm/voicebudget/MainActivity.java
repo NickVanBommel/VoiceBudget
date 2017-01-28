@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,6 +18,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import ai.api.android.AIConfiguration;
+import ai.api.model.AIError;
+import ai.api.model.AIResponse;
+import ai.api.ui.AIButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +54,43 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(String response) {
                         tvResponse.setText(response);
+                    }
+                });
+            }
+        });
+
+        final AIConfiguration config = new AIConfiguration("YOUR_ACCESS_TOKEN",
+                AIConfiguration.SupportedLanguages.English,
+                AIConfiguration.RecognitionEngine.System);
+
+        AIButton aiButton = (AIButton) findViewById(R.id.micButton);
+
+        aiButton.initialize(config);
+        aiButton.setResultsListener(new AIButton.AIButtonListener() {
+
+            @Override
+            public void onCancelled(){
+                return;
+            }
+
+            @Override
+            public void onResult(final AIResponse result) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("ApiAi", "onResult");
+                        tvResponse.setText("changed hopefully");
+                    }
+                });
+            }
+
+            @Override
+            public void onError(final AIError error) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("ApiAi", "onError");
+                        // TODO process error here
                     }
                 });
             }
