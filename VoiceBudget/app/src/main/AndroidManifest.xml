@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="MainActivity">
-            <ai.api.ui.AIButton
-                android:id="@+id/micButton"
-                android:layout_height="152dp"
-                style="@style/Microphone"
-                />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
