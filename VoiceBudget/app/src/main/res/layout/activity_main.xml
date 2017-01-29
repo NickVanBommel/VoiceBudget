@@ -15,13 +15,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No you can't afford that da hell"
+        android:text="Tap the icon above to ask a question or set your budget!"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="138dp"
         android:id="@+id/tvResponse"
         android:textSize="24sp"
-        android:textAlignment="center" />
+        android:textAlignment="center" />s
 
     <ImageButton
         android:layout_width="50dp"
