@@ -124,8 +124,7 @@
         android:elevation="0dp"
         android:textSize="24sp"
         android:layout_below="@+id/rgrpGroup"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="Microphone Icon"
