@@ -20,20 +20,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/textView"
-        android:textSize="24sp" />
-
-    <TextView
-        android:text="Microphone Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="47dp"
-        android:id="@+id/textView3"
-        android:textSize="18sp" />
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
 
     <ImageButton
         android:layout_width="50dp"
@@ -66,7 +54,7 @@
         android:layout_alignStart="@+id/textView3"
         android:layout_marginTop="39dp"
         android:id="@+id/textView5"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <ImageButton
         android:layout_width="50dp"
@@ -82,17 +70,6 @@
         android:layout_marginStart="33dp"
         android:paddingLeft="2dp"/>
 
-    <Button
-        android:text="Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnSave"
-        android:elevation="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/textView5"
-        android:layout_toEndOf="@+id/textView5"
-        android:layout_marginBottom="27dp" />
-
     <Switch
         android:text="Off"
         android:layout_width="80dp"
@@ -101,7 +78,8 @@
         android:checked="false"
         android:layout_alignTop="@+id/textView5"
         android:layout_toRightOf="@+id/ibtnDeltaMic"
-        android:layout_toEndOf="@+id/ibtnDeltaMic" />
+        android:layout_toEndOf="@+id/ibtnDeltaMic"
+        android:textSize="18sp" />
 
     <TextView
         android:text="Audio Language"
@@ -109,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:id="@+id/textView9"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:layout_below="@+id/swtAudio"
         android:layout_alignLeft="@+id/textView5"
         android:layout_alignStart="@+id/textView5" />
@@ -125,17 +103,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="English-UK"
-            />
+            android:textSize="18sp" />
         <RadioButton android:id="@+id/rbtnUS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="English-US"
-            />
+            android:textSize="18sp" />
         <RadioButton android:id="@+id/rbtnGER"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="German"
-            />
+            android:textSize="18sp" />
     </RadioGroup>
+
+    <Button
+        android:text="Save"
+        android:layout_width="125dp"
+        android:layout_height="65dp"
+        android:id="@+id/btnSave"
+        android:elevation="0dp"
+        android:textSize="24sp"
+        android:layout_below="@+id/rgrpGroup"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:text="Microphone Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:id="@+id/textView3"
+        android:textSize="24sp"
+        android:layout_below="@+id/textView"
+        android:layout_alignRight="@+id/ibtnDeltaMic"
+        android:layout_alignEnd="@+id/ibtnDeltaMic" />
 
 </RelativeLayout>
