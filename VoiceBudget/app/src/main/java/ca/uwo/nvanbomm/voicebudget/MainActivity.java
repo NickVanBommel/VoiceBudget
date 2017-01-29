@@ -50,7 +50,8 @@ public class MainActivity extends Activity {
         if (requestCode == REQ_CODE && resultCode == RESULT_OK && null != data){
             ArrayList<String> hits = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             TextView responseText = (TextView) findViewById(R.id.tvResponse);
-            responseText.setText(InputAnalysis.parseInput(hits));
+            InputAnalysis ia = new InputAnalysis();
+            responseText.setText(ia.parseInput(hits));
         }
     }
 
