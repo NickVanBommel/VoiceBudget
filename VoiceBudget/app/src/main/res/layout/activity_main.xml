@@ -25,7 +25,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/questionmark"
+        android:src="@drawable/questionmark"
         android:layout_alignParentTop="true"
         android:layout_marginTop="22dp"
         android:background="@android:color/transparent"
@@ -34,7 +34,7 @@
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/mic"
+        android:src="@drawable/mic"
         android:radius="10dip"
         android:id="@+id/ibtnAsk"
         android:padding="5dp"
@@ -46,7 +46,7 @@
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:srcCompat="@drawable/settings"
+        android:src="@drawable/settings"
         android:id="@+id/ibtnSettings"
         android:scaleType="fitCenter"
         android:layout_alignTop="@+id/ibtnHelp"

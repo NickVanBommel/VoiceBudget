@@ -32,6 +32,7 @@ public class InputAnalysis{
             buzzword = words[indexOf(words,"dollar")+1];
 
             //check buzzword validity, return category
+            return(!getCategory(buzzword).equals("none")&&user.IsFeasiblePurchase(dollarAmount,buzzword))?"yes you can":"Nope";
 
         }
 
@@ -85,7 +86,5 @@ public class InputAnalysis{
             case 2: return "entertainment";
             default: return "none";
         }
-
-
     }
 }
