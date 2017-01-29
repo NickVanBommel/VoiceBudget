@@ -28,6 +28,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         Intent intent = getIntent();
+
+        
+
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
         ibtnDeltaMic = (ImageButton) findViewById(R.id.ibtnDeltaMic);
         ibtnAndy = (ImageButton) findViewById(R.id.ibtnAndy);
@@ -89,8 +92,20 @@ public class SettingsActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, MainActivity.class);
 
-        
+        intent.putExtra("AUDIO_ON", swtAudio.isChecked());
 
+        if (ibtnGoogleMic.getBackground() == ContextCompat.getDrawable(getApplicationContext(), R.drawable.roundedbuttonselected))
+        {
+            intent.putExtra("MIC_IMAGE", "Google");
+        }
+        else if(ibtnDeltaMic.getBackground() == ContextCompat.getDrawable(getApplicationContext(), R.drawable.roundedbuttonselected))
+        {
+            intent.putExtra("MIC_IMAGE", "Delta");
+        }
+        else if(ibtnAndy.getBackground() == ContextCompat.getDrawable(getApplicationContext(), R.drawable.roundedbuttonselected))
+        {
+            intent.putExtra("MIC_IMAGE", "Andy");
+        }
 
         startActivity(intent);
     }
