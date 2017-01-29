@@ -38,7 +38,7 @@ public class InputAnalysis{
             float dollarAmount =-1;
             for (String str: words){
                 if (str.length()!=0 && str.charAt(0) == '$'){
-                    dollarAmount=Float.parseFloat(str.substring(1));
+                    dollarAmount=Float.parseFloat(str.substring(1).replaceAll("[,;]",""));
                     break;
                 }
             }
@@ -116,7 +116,7 @@ public class InputAnalysis{
             0:transport 1:food  2:entertainment
         */
         int catnum=-1;
-        String[][] categories={{"car","bus","train","transport","transportation"},{"meal","meals","drink","drinks","snack","coffee","food"},
+        String[][] categories={{"car","bus","train","transport","transportation"},{"meal","meals","drink","drinks","snack","coffee","food","beer"},
                 {"activity","bar","outing","game","book","fun","out"}};
         for (int x = 0;x<categories.length;x++){
             if (indexOf(categories[x],buzzword)!=-1){
