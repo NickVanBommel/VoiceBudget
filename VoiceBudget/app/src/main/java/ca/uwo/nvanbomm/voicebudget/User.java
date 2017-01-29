@@ -66,7 +66,7 @@ public class User {
         System.out.println("cost and balance "+Float.toString(cost+budgetBalance));
         System.out.println("limit " + Float.toString(budgetLimit));
 
-        if (cost+budgetBalance <= budgetLimit && cost+budgetBalance > 0){
+        if (cost+budgetBalance <= budgetLimit && cost+budgetBalance >= 0){
             return true;
         } else {
             return false;
