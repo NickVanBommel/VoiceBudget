@@ -21,7 +21,7 @@ public class SassyTextToSpeech {
                 @Override
                 public void onInit(int i){
                     if(i != TextToSpeech.ERROR) {
-                        tts.setLanguage(Locale.JAPANESE);
+                        tts.setLanguage(Locale.UK);
                     }
                 }
             });
