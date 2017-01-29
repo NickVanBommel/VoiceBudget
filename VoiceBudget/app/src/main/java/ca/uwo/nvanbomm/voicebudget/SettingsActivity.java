@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        final boolean audioOn = intent.getBooleanExtra("AUDIO_ON", false);
+        final boolean audioOn = intent.getBooleanExtra("AUDIO_ON", true);
         final String micImage = intent.getStringExtra("MIC_IMAGE");
 
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
@@ -39,6 +39,15 @@ public class SettingsActivity extends AppCompatActivity {
         swtAudio = (Switch) findViewById(R.id.swtAudio);
 
         swtAudio.setChecked(audioOn);
+
+        if (audioOn)
+        {
+            swtAudio.setText("On");
+        }
+        else
+        {
+            swtAudio.setText("Off");
+        }
 
         if (micImage == "Google")
         {
