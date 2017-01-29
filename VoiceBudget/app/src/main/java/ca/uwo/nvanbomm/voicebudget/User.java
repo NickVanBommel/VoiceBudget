@@ -52,10 +52,8 @@ public class User {
     }
 
     float GetBudgetRemainder(String budgetName){
-        refresh();
-        float budgetBalance = GetBudgetBalance(budgetName);
-        float budgetLimit = GetBudgetLimit(budgetName);
-        return budgetLimit - budgetBalance;
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        return prefs.getFloat(budgetName+"Key", 0) + prefs.getFloat(budgetName+"BalKey", 0);
     }
 
     boolean IsFeasiblePurchase(float cost, String budgetName){
