@@ -21,7 +21,7 @@ public class InputAnalysis{
             voiceInput+=word+ " ";
         }
 
-        //Check for first option
+        //Check for affordability
         if ((voiceInput.contains("afford")||voiceInput.contains("get")||voiceInput.contains("order"))
                 &&(voiceInput.contains("$"))){
             String[] words = voiceInput.split("\\s+");
@@ -52,7 +52,7 @@ public class InputAnalysis{
 
         }
 
-        //check for second option
+        //check for budget
         else if (voiceInput.contains("budget")){
             String[] words = voiceInput.split("\\s+");
             String category="none";
@@ -62,7 +62,21 @@ public class InputAnalysis{
                     break;
                 }
             }
-            return ""+user.GetBudgetRemainder(category);
+            return "You have $"+user.GetBudgetRemainder(category)+" remaining out of $"+user.GetBudgetLimit(category);
+
+        }
+
+        //check balance
+        else if (voiceInput.contains("balance")||voiceInput.contains("money")){
+            String[] words = voiceInput.split("\\s+");
+            String category="none";
+            for (String word : words){
+                if (!getCategory(word).equals("none")) {
+                    category = getCategory(word);
+                    break;
+                }
+            }
+            return "You have $"+user.GetGeneralBalance()+" in your bank account!";
 
         }
 
