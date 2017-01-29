@@ -19,7 +19,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="138dp"
-        android:id="@+id/tvResponse" />
+        android:id="@+id/tvResponse"
+        android:textSize="24sp"
+        android:textAlignment="center" />
 
     <ImageButton
         android:layout_width="50dp"
@@ -49,12 +51,9 @@
         android:src="@drawable/settings"
         android:id="@+id/ibtnSettings"
         android:scaleType="fitCenter"
-        android:layout_alignTop="@+id/ibtnHelp"
-        android:layout_toRightOf="@+id/tvResponse"
-        android:layout_toEndOf="@+id/tvResponse"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
-        />
+        android:layout_alignTop="@+id/ibtnHelp"/>
 
 </RelativeLayout>
