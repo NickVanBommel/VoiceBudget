@@ -73,6 +73,10 @@ public class MainActivity extends Activity {
             {
                 ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.andy));
             }
+            else if (micImage.equals("Logo"))
+            {
+                ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.logo));
+            }
         }
         else
         {
