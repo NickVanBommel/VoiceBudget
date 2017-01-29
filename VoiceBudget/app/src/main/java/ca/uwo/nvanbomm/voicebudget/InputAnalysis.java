@@ -106,7 +106,7 @@ public class InputAnalysis extends Activity{
         }
 
         //change limit
-        else if ((voiceInput.contains("change")||voiceInput.contains("set"))&&voiceInput.contains("limit")){
+        else if ((voiceInput.contains("change")||voiceInput.contains("set"))&&(voiceInput.contains("limit")||voiceInput.contains("budget"))){
             String[] words = voiceInput.split("\\s+");
             String category="none";
             float dollarAmount =-1;
