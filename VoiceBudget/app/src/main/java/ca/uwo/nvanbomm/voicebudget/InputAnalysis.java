@@ -11,7 +11,9 @@ import org.xml.sax.ErrorHandler;
 
 public class InputAnalysis{
 
-    private String parseInput(String voiceInput){
+    User user = new User();
+
+    public String parseInput(String voiceInput){
 
         //Check for first option
         if ((voiceInput.contains("afford")||voiceInput.contains("get"))
