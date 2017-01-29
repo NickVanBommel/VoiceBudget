@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        final boolean audioOn = intent.getBooleanExtra("AUDIO_ON", true);
+        final boolean audioOn = intent.getBooleanExtra("AUDIO_ON", false);
         final String micImage = intent.getStringExtra("MIC_IMAGE");
 
         micIndex = 0;
