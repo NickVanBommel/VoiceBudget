@@ -1,7 +1,11 @@
 package ca.uwo.nvanbomm.voicebudget;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.content.ContextCompat;
@@ -21,7 +25,12 @@ public class MainActivity extends Activity {
     private static final int REQ_CODE = 666;
     private SassyTextToSpeech readAloud;
     private boolean audioOn;
+    public static final String PREFS_FILE = "R.xml.preference";
+    float transportationBudget;
+    float funBudget;
+    float foodBudget;
     String micImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,12 @@ public class MainActivity extends Activity {
         Intent intent = getIntent();
 
         audioOn = intent.getBooleanExtra("AUDIO_ON", false);
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_FILE, 0);
+        transportationBudget = prefs.getFloat("transportationKey", 75);
+        funBudget = prefs.getFloat("funKey", 150);
+        foodBudget = prefs.getFloat("foodKey", 200);
+
 
         ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
@@ -111,7 +126,7 @@ public class MainActivity extends Activity {
         if (requestCode == REQ_CODE && resultCode == RESULT_OK && null != data){
             ArrayList<String> hits = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             TextView responseText = (TextView) findViewById(R.id.tvResponse);
-            InputAnalysis ia = new InputAnalysis();
+            InputAnalysis ia = new InputAnalysis(transportationBudget,funBudget,foodBudget,getApplicationContext());
             String output = ia.parseInput(hits);
             responseText.setText(output);
             if (audioOn) {
