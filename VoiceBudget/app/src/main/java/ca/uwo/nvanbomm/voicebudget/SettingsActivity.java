@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        
+
 
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
         ibtnDeltaMic = (ImageButton) findViewById(R.id.ibtnDeltaMic);
