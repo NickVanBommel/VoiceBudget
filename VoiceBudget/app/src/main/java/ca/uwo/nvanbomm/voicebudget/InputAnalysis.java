@@ -83,9 +83,6 @@ public class InputAnalysis extends Activity{
                     break;
                 }
             }
-            if (!category.equals("none")){
-
-            }
             return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself. ;)":"You wish. You've scraped enough out of your " + category + " budget for this month.";
         }
 

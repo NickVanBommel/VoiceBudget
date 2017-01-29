@@ -107,6 +107,7 @@ public class MainActivity extends Activity {
         btnSpend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 btnSpend.setVisibility(View.INVISIBLE);
             }
         });
@@ -146,9 +147,9 @@ public class MainActivity extends Activity {
             InputAnalysis ia = new InputAnalysis(getApplicationContext());
             String output = ia.parseInput(hits);
             responseText.setText(output);
+            //
             if (audioOn) {
                 readAloud.Speaking(output);
-                btnSpend.setVisibility(View.VISIBLE);
             }
         }
     }
