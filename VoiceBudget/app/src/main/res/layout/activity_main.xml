@@ -21,7 +21,7 @@
         android:layout_marginBottom="138dp"
         android:id="@+id/tvResponse"
         android:textSize="24sp"
-        android:textAlignment="center" />s
+        android:textAlignment="center" />
 
     <ImageButton
         android:layout_width="50dp"
@@ -54,5 +54,16 @@
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:layout_alignTop="@+id/ibtnHelp"/>
+
+    <Button
+        android:text="Spend It!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/ibtnAsk"
+        android:layout_alignStart="@+id/ibtnAsk"
+        android:layout_marginBottom="47dp"
+        android:id="@+id/btnSpend"
+        android:visibility="invisible" />
 
 </RelativeLayout>

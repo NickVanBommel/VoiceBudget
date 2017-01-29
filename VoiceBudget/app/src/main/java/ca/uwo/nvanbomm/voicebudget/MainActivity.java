@@ -11,6 +11,7 @@ import android.speech.tts.TextToSpeech;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.content.Intent;
@@ -53,6 +54,8 @@ public class MainActivity extends Activity {
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
         final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
         final ImageButton ibtnSettings = (ImageButton) findViewById(R.id.ibtnSettings);
+        final Button btnSpend = (Button) findViewById(R.id.btnSpend);
+
         micImage = intent.getStringExtra("MIC_IMAGE");
         if (micImage != null)
         {
@@ -97,6 +100,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 selectSettings(v);
+            }
+        });
+
+        btnSpend.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
     }
