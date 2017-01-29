@@ -50,6 +50,8 @@ public class InputAnalysis extends Activity{
         SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
         SharedPreferences.Editor editor = prefs.edit();
         user = new User(context);
+//        editor.clear();
+//        editor.commit();
         user.setBudgetLimit("transportationKey",prefs.getFloat("transportationKey", 75));
         user.setBudgetLimit("funKey",prefs.getFloat("funKey", 150));
         user.setBudgetLimit("foodKey",prefs.getFloat("foodKey", 200));
