@@ -37,7 +37,6 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/mic"
-        android:radius="10dip"
         android:id="@+id/ibtnAsk"
         android:padding="5dp"
         android:scaleType="fitCenter"
