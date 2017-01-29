@@ -40,7 +40,7 @@
         app:srcCompat="@drawable/deltahacks"
         android:layout_alignTop="@+id/ibtnGoogleMic"
         android:layout_alignLeft="@+id/ibtnGoogleMic"
-        android:layout_marginLeft="90dp"
+        android:layout_marginLeft="86dp"
         android:id="@+id/ibtnDeltaMic"
         android:scaleType="fitCenter"
         android:padding="2dp"
@@ -66,8 +66,8 @@
         android:background="@drawable/roundedbutton"
         android:layout_alignTop="@+id/ibtnDeltaMic"
         android:layout_alignLeft="@+id/ibtnDeltaMic"
-        android:layout_marginLeft="90dp"
-        android:layout_marginStart="90dp"
+        android:layout_marginLeft="86dp"
+        android:layout_marginStart="86dp"
         android:paddingLeft="2dp"/>
 
     <Switch
@@ -147,7 +147,7 @@
         android:layout_alignLeft="@+id/ibtnAndy"
         android:id="@+id/ibtnLogo"
         android:padding="2dp"
-        android:layout_marginLeft="90dp"
+        android:layout_marginLeft="84dp"
         android:background="@drawable/roundedbutton"
         android:scaleType="fitCenter" />
 
