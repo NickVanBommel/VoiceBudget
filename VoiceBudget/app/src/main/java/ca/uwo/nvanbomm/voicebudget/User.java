@@ -51,7 +51,8 @@ public class User {
 
     boolean IsFeasiblePurchase(int cost, String budgetName){
         int budgetBalance = GetBudgetBalance(budgetName);
-        if (cost < budgetBalance){
+        int budgetLimit = GetBudgetLimit(budgetName);
+        if (cost+budgetBalance < budgetLimit){
             return true;
         } else {
             return false;
