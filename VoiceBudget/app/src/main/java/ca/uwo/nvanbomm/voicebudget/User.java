@@ -117,13 +117,13 @@ public class User {
         refresh();
         int index = -1;
         switch(categoryKey){
-            case "transportationKey":
+            case "transportationBalKey":
                 index = 0;
                 break;
-            case "funKey":
+            case "funBalKey":
                 index = 1;
                 break;
-            case "foodKey":
+            case "foodBalKey":
                 index=2;
                 break;
         }

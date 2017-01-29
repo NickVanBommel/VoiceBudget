@@ -21,8 +21,8 @@ public class InputAnalysis extends Activity{
     Context context;
     User user;
 
-    private String category;
-    private float dollarAmount;
+    private String category="";
+    private float dollarAmount=0;
 
     public String getCategory() {
         return category;
