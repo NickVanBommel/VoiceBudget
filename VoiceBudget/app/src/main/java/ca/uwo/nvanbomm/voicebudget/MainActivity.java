@@ -28,15 +28,42 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageButton speakButton = (ImageButton) findViewById(R.id.ibtnAsk);
+        ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
+        final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
+        final ImageButton ibtnSettings = (ImageButton) findViewById(R.id.ibtnSettings);
         //final Context con = this;
-        speakButton.setOnClickListener(new OnClickListener() {
+        ibtnAsk.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 StartVoiceRecognition();
             }
         });
+
+        ibtnHelp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectHelp(v);
+            }
+        });
+
+        ibtnSettings.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectSettings(v);
+            }
+        });
+    }
+
+    public void selectHelp(View view)
+    {
+        Intent intent = new Intent(this, HelpActivity.class);
+        startActivity(intent);
+    }
+    public void selectSettings(View view)
+    {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private void StartVoiceRecognition(){
