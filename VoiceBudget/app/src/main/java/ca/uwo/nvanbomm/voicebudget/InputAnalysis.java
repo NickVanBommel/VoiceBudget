@@ -71,7 +71,8 @@ public class InputAnalysis extends Activity{
                     break;
                 }
             }
-            return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself. ;)":"You wish. You've scraped enough out of your budget for this month.";
+
+            return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself. ;)":"You wish. You've scraped enough out of your " + category + " budget for this month.";
         }
 
         //check for budget
@@ -125,13 +126,28 @@ public class InputAnalysis extends Activity{
                     break;
                 }
             }
-            editor.putFloat(category+"Key",dollarAmount);
-            editor.commit();
-            return "hhhhh";
+            if (overBudget(user.GetGeneralBalance())) {
+                editor.putFloat(category + "Key", dollarAmount);
+                editor.commit();
+                return "The " + category + " budget has been changed to " + dollarAmount + ".";
+            } else {
+                return "Uhh, sorry, no. You would run out of money in your account if you did that.";
+            }
 
         }
 
         return "Invalid command";
+    }
+
+    //ANDY IM SORRY PLZ JAVADOC L8R
+    private boolean overBudget(float balance){
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        float sumBudgets = prefs.getFloat("transportationKey", 75) + prefs.getFloat("funKey", 50) + prefs.getFloat("foodKey", 200);
+        if (sumBudgets > balance){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
