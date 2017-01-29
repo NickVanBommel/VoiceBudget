@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
     String micImage;
     int langIndex;
     Button btnSpend;
+    InputAnalysis ia;
 
 
     @Override
@@ -108,6 +109,12 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                SharedPreferences prefs = getSharedPreferences(PREFS_FILE, 0);
+                SharedPreferences.Editor editor = prefs.edit();
+
+                editor.putFloat(ia.getCategory() + "Key", prefs.getFloat(ia.getCategory() + "Key", 0) - ia.getDollarAmount());
+                editor.putFloat("balanceKey", prefs.getFloat("balanceKey", 0) - ia.getDollarAmount());
+                tvResponse.setText("You spent " + ia.getDollarAmount() + "!!");
                 btnSpend.setVisibility(View.INVISIBLE);
             }
         });
@@ -144,7 +151,7 @@ public class MainActivity extends Activity {
         if (requestCode == REQ_CODE && resultCode == RESULT_OK && null != data){
             ArrayList<String> hits = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             TextView responseText = (TextView) findViewById(R.id.tvResponse);
-            InputAnalysis ia = new InputAnalysis(getApplicationContext());
+            ia = new InputAnalysis(getApplicationContext());
             String output = ia.parseInput(hits);
             responseText.setText(output);
             parseForButton(output);
