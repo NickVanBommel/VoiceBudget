@@ -20,6 +20,18 @@ public class InputAnalysis extends Activity{
     public static final String PREFS_FILE = "R.xml.preference";
     Context context;
     User user;
+
+    private String category;
+    private float dollarAmount;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public float getDollarAmount() {
+        return dollarAmount;
+    }
+
     /**
      * Constructor. Sets budget limits from shared preferences.
      */
@@ -54,7 +66,7 @@ public class InputAnalysis extends Activity{
                 ||voiceInput.contains("spend"))
                 &&(voiceInput.contains("$"))){
             String[] words = voiceInput.split("\\s+");
-            float dollarAmount =-1;
+            dollarAmount =-1;
             for (String str: words){
                 if (str.length()!=0 && str.charAt(0) == '$'){
                     dollarAmount=Float.parseFloat(str.substring(1).replaceAll("[,;]",""));
@@ -64,14 +76,16 @@ public class InputAnalysis extends Activity{
             if (dollarAmount < 0){
                 return "Didn't catch that, please repeat!";
             }
-            String category="none";
+            category="none";
             for (String word : words){
                 if (!getCategory(word).equals("none")) {
                     category = getCategory(word);
                     break;
                 }
             }
+            if (!category.equals("none")){
 
+            }
             return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself. ;)":"You wish. You've scraped enough out of your " + category + " budget for this month.";
         }
 
@@ -81,7 +95,7 @@ public class InputAnalysis extends Activity{
                 (voiceInput.contains(" most ")&&(voiceInput.contains(" on ")||voiceInput.contains(" at ")))){
             System.out.println(voiceInput.contains(" on "));
             String[] words = voiceInput.split("\\s+");
-            String category="none";
+            category="none";
             for (String word : words){
                 if (!getCategory(word).equals("none")) {
                     category = getCategory(word);
@@ -95,7 +109,7 @@ public class InputAnalysis extends Activity{
         //check balance
         else if (voiceInput.contains("balance")||voiceInput.contains("money")||voiceInput.contains("cash")){
             String[] words = voiceInput.split("\\s+");
-            String category="none";
+            category="none";
             for (String word : words){
                 if (!getCategory(word).equals("none")) {
                     category = getCategory(word);
@@ -109,8 +123,8 @@ public class InputAnalysis extends Activity{
         //change limit
         else if ((voiceInput.contains("change")||voiceInput.contains("set"))&&(voiceInput.contains("limit")||voiceInput.contains("budget"))){
             String[] words = voiceInput.split("\\s+");
-            String category="none";
-            float dollarAmount =-1;
+            category="none";
+            dollarAmount =-1;
             for (String str: words){
                 if (str.length()!=0 && str.charAt(0) == '$'){
                     dollarAmount=Float.parseFloat(str.substring(1).replaceAll("[,;]",""));
