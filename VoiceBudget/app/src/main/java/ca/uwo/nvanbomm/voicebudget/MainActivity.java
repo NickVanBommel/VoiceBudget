@@ -44,9 +44,9 @@ public class MainActivity extends Activity {
         langIndex = intent.getIntExtra("LANGUAGE", 0);
 
         SharedPreferences prefs = getSharedPreferences(PREFS_FILE, 0);
-        transportationBudget = prefs.getFloat("transportationKey", 75);
-        funBudget = prefs.getFloat("funKey", 150);
-        foodBudget = prefs.getFloat("foodKey", 200);
+//        transportationBudget = prefs.getFloat("transportationKey", 75);
+//        funBudget = prefs.getFloat("funKey", 150);
+//        foodBudget = prefs.getFloat("foodKey", 200);
 
 
         ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
@@ -132,7 +132,7 @@ public class MainActivity extends Activity {
         if (requestCode == REQ_CODE && resultCode == RESULT_OK && null != data){
             ArrayList<String> hits = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             TextView responseText = (TextView) findViewById(R.id.tvResponse);
-            InputAnalysis ia = new InputAnalysis(transportationBudget,funBudget,foodBudget,getApplicationContext());
+            InputAnalysis ia = new InputAnalysis(getApplicationContext());
             String output = ia.parseInput(hits);
             responseText.setText(output);
             if (audioOn) {

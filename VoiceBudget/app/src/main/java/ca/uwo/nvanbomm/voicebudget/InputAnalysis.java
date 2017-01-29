@@ -23,12 +23,9 @@ public class InputAnalysis extends Activity{
     /**
      * Constructor. Sets budget limits from shared preferences.
      */
-    public InputAnalysis(float transportBudget, float funBudget, float foodBudget, Context context){
-        user.setBudgetLimit(0,transportBudget);
-        user.setBudgetLimit(1,funBudget);
-        user.setBudgetLimit(2,foodBudget);
+    public InputAnalysis(Context context){
         this.context = context;
-        user = new User();
+
     }
 
     /**
@@ -40,7 +37,10 @@ public class InputAnalysis extends Activity{
     public String parseInput(ArrayList<String> inputList){
         SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
         SharedPreferences.Editor editor = prefs.edit();
-
+        user = new User(context);
+        user.setBudgetLimit("transportationKey",prefs.getFloat("transportationKey", 75));
+        user.setBudgetLimit("funKey",prefs.getFloat("funKey", 150));
+        user.setBudgetLimit("foodKey",prefs.getFloat("foodKey", 200));
         String voiceInput="";
         for (String word : inputList){
             voiceInput+=word+ " ";
@@ -127,7 +127,7 @@ public class InputAnalysis extends Activity{
             }
             editor.putFloat(category+"Key",dollarAmount);
             editor.commit();
-            return "";
+            return "hhhhh";
 
         }
 

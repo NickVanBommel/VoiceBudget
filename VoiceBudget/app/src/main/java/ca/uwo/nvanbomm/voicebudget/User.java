@@ -4,6 +4,9 @@ package ca.uwo.nvanbomm.voicebudget;
  * Created by nicho on 1/28/2017.
  */
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 
 
@@ -11,15 +14,17 @@ import java.util.ArrayList;
 public class User {
     float balance;
     ArrayList<Budget> userBudgets;
+    Context context;
+    public static final String PREFS_FILE = "R.xml.preference";
 
-
-    User() {
-        balance = 10000;
+    User(Context context) {
+        this.context = context;
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        balance = 10000; //add to sharedprefs after
         userBudgets = new ArrayList<Budget>();
-        userBudgets.add(new Budget(75, "transportation"));
-        userBudgets.add(new Budget(150, "fun"));
-        userBudgets.add(new Budget(100, "food"));
-        userBudgets.add(new Budget(400, "groceries"));
+        userBudgets.add(new Budget(prefs.getFloat("transportationKey", 75), "transportation"));
+        userBudgets.add(new Budget(prefs.getFloat("funKey", 150), "fun"));
+        userBudgets.add(new Budget(prefs.getFloat("foodKey", 200), "food"));
     }
 
     float GetGeneralBalance(){
@@ -27,6 +32,7 @@ public class User {
     }
 
     float GetBudgetLimit(String budgetName){
+        refresh();
         for(int i = 0; i < userBudgets.size(); i++){
             if (userBudgets.get(i).getName() == budgetName){
                 return userBudgets.get(i).getLimit();
@@ -35,6 +41,7 @@ public class User {
         return 0;
     }
     float GetBudgetBalance(String budgetName){
+        refresh();
         for(int i = 0; i < userBudgets.size(); i++){
             if (userBudgets.get(i).getName() == budgetName){
                 return userBudgets.get(i).getBalance();
@@ -44,12 +51,14 @@ public class User {
     }
 
     float GetBudgetRemainder(String budgetName){
+        refresh();
         float budgetBalance = GetBudgetBalance(budgetName);
         float budgetLimit = GetBudgetLimit(budgetName);
         return budgetLimit - budgetBalance;
     }
 
     boolean IsFeasiblePurchase(float cost, String budgetName){
+        refresh();
         float budgetBalance = GetBudgetBalance(budgetName);
         float budgetLimit = GetBudgetLimit(budgetName);
         if (cost+budgetBalance <= budgetLimit){
@@ -60,12 +69,40 @@ public class User {
     }
 
     void spend(int index, float amount){
+        refresh();
         userBudgets.get(index).setBalance(userBudgets.get(index).getBalance()+amount);
     }
 
-    void setBudgetLimit(int index, float limit){
+    void setBudgetLimit(String categoryKey, float limit){
         //0=transportation, 1=fun, 2=food
+        refresh();
+        int index = -1;
+        switch(categoryKey){
+            case "transportationKey":
+                index = 0;
+                break;
+            case "funKey":
+                index = 1;
+                break;
+            case "foodKey":
+                index=2;
+                break;
+        }
         userBudgets.get(index).setLimit(limit);
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putFloat(categoryKey, limit);
+        editor.commit();
+    }
+
+    private void refresh(){
+        userBudgets.clear();
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        balance = 10000; //add to sharedprefs after
+        userBudgets = new ArrayList<Budget>();
+        userBudgets.add(new Budget(prefs.getFloat("transportationKey", 75), "transportation"));
+        userBudgets.add(new Budget(prefs.getFloat("funKey", 150), "fun"));
+        userBudgets.add(new Budget(prefs.getFloat("foodKey", 200), "food"));
     }
 
 
