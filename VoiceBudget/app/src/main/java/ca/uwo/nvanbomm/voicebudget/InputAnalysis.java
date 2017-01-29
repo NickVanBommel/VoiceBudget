@@ -31,8 +31,9 @@ public class InputAnalysis{
             //dollarAmount = Integer.parseInt(words[indexOf(words,"dollar")-1]);
 
             //check buzzword validity, return category
-            System.out.println(user.IsFeasiblePurchase(dollarAmount,buzzword));
-            return(!getCategory(buzzword).equals("none")&&user.IsFeasiblePurchase(dollarAmount,buzzword))?"yes you can":"Nope";
+            System.out.println(user.IsFeasiblePurchase(dollarAmount,getCategory(buzzword)));
+            System.out.println(getCategory(buzzword));
+            return(!getCategory(buzzword).equals("none")&&user.IsFeasiblePurchase(dollarAmount,getCategory(buzzword)))?"yes you can":"Nope";
 
         }
 
@@ -58,7 +59,7 @@ public class InputAnalysis{
     private int indexOf(String[] words, String word){
         int index =-1;
         for (int x=0;x<words.length;x++){
-            if (words[x].equals("word")){
+            if (words[x].equals(word)){
                 return x;
             }
         }
@@ -73,15 +74,15 @@ public class InputAnalysis{
         int catnum=-1;
         String[][] categories={{"car","bus","train"},{"meal","meals","drink","snack","coffee"},
                 {"activity","bar","outing","game","book"}};
-        for  (int x = 0;x<categories.length;x++){
+        for (int x = 0;x<categories.length;x++){
             if (indexOf(categories[x],buzzword)!=-1){
+
                 catnum=x;
                 break;
             }
         }
-
         switch(catnum){
-            case 0: return "transport";
+            case 0: return "transportation";
             case 1: return "food";
             case 2: return "entertainment";
             default: return "none";
