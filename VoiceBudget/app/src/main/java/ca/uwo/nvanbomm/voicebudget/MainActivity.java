@@ -19,7 +19,24 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import ca.uwo.nvanbomm.voicebudget.InputAnalysis;
 
+<<<<<<< HEAD
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+import java.util.ArrayList;
+
+import ai.api.android.AIConfiguration;
+import ai.api.model.AIError;
+import ai.api.model.AIResponse;
+import ai.api.ui.AIButton;
+
+public class MainActivity extends AppCompatActivity {
+
+=======
 public class MainActivity extends Activity {
+>>>>>>> origin/master
+
 
     private static final int REQ_CODE = 666;
 
@@ -27,8 +44,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         User currUser = new User();
         ImageButton speakButton = (ImageButton) findViewById(R.id.ibtnAsk);
+>>>>>>> origin/master
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
 
         speakButton.setOnClickListener(new OnClickListener() {
@@ -54,6 +73,7 @@ public class MainActivity extends Activity {
             responseText.setText(InputAnalysis.parseInput(hits));
         }
     }
+
 
 
 }
