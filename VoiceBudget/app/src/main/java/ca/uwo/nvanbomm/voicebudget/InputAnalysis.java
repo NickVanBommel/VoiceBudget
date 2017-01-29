@@ -1,6 +1,10 @@
 package ca.uwo.nvanbomm.voicebudget;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 
 import org.xml.sax.ErrorHandler;
@@ -11,9 +15,21 @@ import java.util.ArrayList;
  * Created by Andy on 1/28/2017.
  */
 
-public class InputAnalysis{
+public class InputAnalysis extends Activity{
 
-    User user = new User();
+    public static final String PREFS_FILE = "R.xml.preference";
+    Context context;
+    User user;
+    /**
+     * Constructor. Sets budget limits from shared preferences.
+     */
+    public InputAnalysis(float transportBudget, float funBudget, float foodBudget, Context context){
+        user.setBudgetLimit(0,transportBudget);
+        user.setBudgetLimit(1,funBudget);
+        user.setBudgetLimit(2,foodBudget);
+        this.context = context;
+        user = new User();
+    }
 
     /**
      * takes input from voice and reacts accordingly. options are check for affordability, check
@@ -22,6 +38,9 @@ public class InputAnalysis{
      * @return the appropriate response to the asked question.
      */
     public String parseInput(ArrayList<String> inputList){
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        SharedPreferences.Editor editor = prefs.edit();
+
         String voiceInput="";
         for (String word : inputList){
             voiceInput+=word+ " ";
@@ -83,6 +102,32 @@ public class InputAnalysis{
                 }
             }
             return "You have $"+user.GetGeneralBalance()+" in your bank account! You're basically rolling in cash.";
+
+        }
+
+        //change limit
+        else if ((voiceInput.contains("change")||voiceInput.contains("set"))&&voiceInput.contains("limit")){
+            String[] words = voiceInput.split("\\s+");
+            String category="none";
+            float dollarAmount =-1;
+            for (String str: words){
+                if (str.length()!=0 && str.charAt(0) == '$'){
+                    dollarAmount=Float.parseFloat(str.substring(1).replaceAll("[,;]",""));
+                    break;
+                }
+            }
+            if (dollarAmount < 0){
+                return "Didn't catch that, please repeat!";
+            }
+            for (String word : words){
+                if (!getCategory(word).equals("none")) {
+                    category = getCategory(word);
+                    break;
+                }
+            }
+            editor.putFloat(category+"Key",dollarAmount);
+            editor.commit();
+            return "";
 
         }
 
