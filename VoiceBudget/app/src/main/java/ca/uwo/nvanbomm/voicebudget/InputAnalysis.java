@@ -67,7 +67,7 @@ public class InputAnalysis extends Activity{
 
 
         //Check for affordability
-        if ((voiceInput.contains("afford")||voiceInput.contains("get")||voiceInput.contains("order")||voiceInput.contains("buy")||voiceInput.contains("purchase")
+        if ((voiceInput.contains("afford")||voiceInput.contains("forward")||voiceInput.contains("get")||voiceInput.contains("order")||voiceInput.contains("buy")||voiceInput.contains("purchase")
                 ||voiceInput.contains("spend"))
                 &&(voiceInput.contains("$"))){
             String[] words = voiceInput.split("\\s+");
@@ -193,7 +193,7 @@ public class InputAnalysis extends Activity{
             0:transport 1:food  2:entertainment
         */
         int catnum=-1;
-        String[][] categories={{"car","bus","train","transport","transportation","travel","travelling"},{"meal","meals","drink","drinks","snack","coffee","food","beer"},
+        String[][] categories={{"car","bus","train","transport","transportation","travel","travelling","cab","taxi","uber"},{"meal","meals","drink","drinks","snack","coffee","food","beer"},
                 {"activity","bar","outing","game","book","fun","out"}};
         for (int x = 0;x<categories.length;x++){
             if (indexOf(categories[x],buzzword)!=-1){

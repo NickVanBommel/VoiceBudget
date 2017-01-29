@@ -57,10 +57,16 @@ public class User {
     }
 
     boolean IsFeasiblePurchase(float cost, String budgetName){
-        refresh();
-        float budgetBalance = GetBudgetBalance(budgetName);
-        float budgetLimit = GetBudgetLimit(budgetName);
-        if (cost+budgetBalance <= budgetLimit){
+//        refresh();
+//        float budgetBalance = GetBudgetBalance(budgetName);
+//        float budgetLimit = GetBudgetLimit(budgetName);
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        float budgetBalance = prefs.getFloat(budgetName+"BalKey", 0);
+        float budgetLimit = prefs.getFloat(budgetName+"Key", 0);
+        System.out.println("cost and balance "+Float.toString(cost+budgetBalance));
+        System.out.println("limit " + Float.toString(budgetLimit));
+
+        if (cost+budgetBalance <= budgetLimit && cost+budgetBalance > 0){
             return true;
         } else {
             return false;
@@ -83,7 +89,7 @@ public class User {
                 cat = "food";
                 break;
         }
-        editor.putFloat(cat + "BalKey", prefs.getFloat(cat+"Balkey",0)+amount);
+        editor.putFloat(cat + "BalKey", prefs.getFloat(cat+"Balkey",0)-amount);
         editor.putFloat("balanceKey",prefs.getFloat("balanceKey",1000)-amount);
         editor.commit();
     }
