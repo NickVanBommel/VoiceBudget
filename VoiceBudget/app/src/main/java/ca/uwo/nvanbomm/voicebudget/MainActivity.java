@@ -36,17 +36,20 @@ public class MainActivity extends Activity {
         final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
         final ImageButton ibtnSettings = (ImageButton) findViewById(R.id.ibtnSettings);
         final String micImage = intent.getStringExtra("MIC_IMAGE");
-        if (micImage == "Google")
+        if (micImage != null)
         {
-            ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.mic));
-        }
-        else if (micImage == "Delta")
-        {
-            ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.deltahacks));
-        }
-        else if (micImage == "Andy")
-        {
-            ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.andy));
+            if (micImage == "Google")
+            {
+                ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.mic));
+            }
+            else if (micImage == "Delta")
+            {
+                ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.deltahacks));
+            }
+            else if (micImage == "Andy")
+            {
+                ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.andy));
+            }
         }
 
         readAloud = new SassyTextToSpeech();
