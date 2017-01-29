@@ -18,17 +18,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/tvHelp"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="normal|bold" />
 
     <TextView
-        android:text="Welcome to our application! Below are some common commands"
+        android:text="Welcome to the Voice of Reason! Here are some helpful commands to get you started:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:id="@+id/textView4"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textAlignment="center" />
 
     <TextView
         android:text="1. Can I afford a [price] dollar [item]?"
@@ -37,7 +39,8 @@
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:id="@+id/textView6" />
+        android:id="@+id/textView6"
+        android:textAlignment="center" />
 
     <TextView
         android:text="2. What is my remaining budget for [category]?"
@@ -46,22 +49,25 @@
         android:layout_below="@+id/textView6"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView7" />
+        android:id="@+id/textView7"
+        android:textAlignment="center" />
 
     <TextView
-        android:text="3. What is my budget?"
+        android:text="3. What is my current balance?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView7"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:id="@+id/textView8" />
+        android:id="@+id/textView8"
+        android:textAlignment="center" />
 
     <Button
         android:text="Done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/btnDone"
+        android:layout_below="@+id/textView8"
         android:layout_centerHorizontal="true"
-        android:id="@+id/btnDone" />
+        android:layout_marginTop="89dp" />
 </RelativeLayout>
