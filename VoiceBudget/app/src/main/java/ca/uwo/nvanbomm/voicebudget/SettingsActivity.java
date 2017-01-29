@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,6 +23,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     Switch swtAudio;
 
+    int micIndex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         final boolean audioOn = intent.getBooleanExtra("AUDIO_ON", true);
         final String micImage = intent.getStringExtra("MIC_IMAGE");
 
+        micIndex = 0;
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
         ibtnDeltaMic = (ImageButton) findViewById(R.id.ibtnDeltaMic);
         ibtnAndy = (ImageButton) findViewById(R.id.ibtnAndy);
@@ -51,18 +55,21 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (micImage == "Google")
         {
+            micIndex = 0;
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
         }
         else if (micImage == "Delta")
         {
+            micIndex = 1;
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
         }
         else if (micImage == "Andy")
         {
+            micIndex = 2;
             ibtnAndy.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
@@ -71,6 +78,7 @@ public class SettingsActivity extends AppCompatActivity {
         ibtnGoogleMic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                micIndex = 0;
                 ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
                 ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbuttonselected);
                 ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
@@ -80,6 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
         ibtnDeltaMic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                micIndex = 1;
                 ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
                 ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbuttonselected);
                 ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
@@ -89,6 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
         ibtnAndy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                micIndex = 2;
                 ibtnAndy.setBackgroundResource(R.drawable.roundedbuttonselected);
                 ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
                 ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
@@ -125,15 +135,15 @@ public class SettingsActivity extends AppCompatActivity {
 
         intent.putExtra("AUDIO_ON", swtAudio.isChecked());
 
-        if (ibtnGoogleMic.getBackground() == ContextCompat.getDrawable(getApplicationContext(), R.drawable.roundedbuttonselected))
+        if (micIndex == 0)
         {
             intent.putExtra("MIC_IMAGE", "Google");
         }
-        else if(ibtnDeltaMic.getBackground() == ContextCompat.getDrawable(getApplicationContext(), R.drawable.roundedbuttonselected))
+        else if(micIndex == 1)
         {
             intent.putExtra("MIC_IMAGE", "Delta");
         }
-        else if(ibtnAndy.getBackground() == ContextCompat.getDrawable(getApplicationContext(), R.drawable.roundedbuttonselected))
+        else if(micIndex == 2)
         {
             intent.putExtra("MIC_IMAGE", "Andy");
         }
