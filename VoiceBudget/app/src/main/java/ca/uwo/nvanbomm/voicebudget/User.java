@@ -20,7 +20,7 @@ public class User {
     User(Context context) {
         this.context = context;
         SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
-        balance = 10000; //add to sharedprefs after
+        balance = prefs.getFloat("balanceKey",1000); //add to sharedprefs after
         userBudgets = new ArrayList<Budget>();
         userBudgets.add(new Budget(prefs.getFloat("transportationKey", 75), "transportation"));
         userBudgets.add(new Budget(prefs.getFloat("funKey", 150), "fun"));
@@ -28,6 +28,7 @@ public class User {
     }
 
     float GetGeneralBalance(){
+        refresh();
         return balance;
     }
 
@@ -70,7 +71,23 @@ public class User {
 
     void spend(int index, float amount){
         refresh();
-        userBudgets.get(index).setBalance(userBudgets.get(index).getBalance()+amount);
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        String cat="";
+        switch (index) {
+            case 0:
+                cat = "transportation";
+                break;
+            case 1:
+                cat = "fun";
+                break;
+            case 2:
+                cat = "food";
+                break;
+        }
+        editor.putFloat(cat + "BalKey", prefs.getFloat(cat+"Balkey",0)+amount);
+        editor.putFloat("balanceKey",prefs.getFloat("balanceKey",1000)-amount);
+        editor.commit();
     }
 
     void setBudgetLimit(String categoryKey, float limit){
@@ -95,10 +112,32 @@ public class User {
         editor.commit();
     }
 
+    void setBudgetBalance(String categoryKey, float balance){
+        //0=transportation, 1=fun, 2=food
+        refresh();
+        int index = -1;
+        switch(categoryKey){
+            case "transportationKey":
+                index = 0;
+                break;
+            case "funKey":
+                index = 1;
+                break;
+            case "foodKey":
+                index=2;
+                break;
+        }
+        userBudgets.get(index).setBalance(balance);
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putFloat(categoryKey, balance);
+        editor.commit();
+    }
+
     private void refresh(){
         userBudgets.clear();
         SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
-        balance = 10000; //add to sharedprefs after
+        balance = prefs.getFloat("balanceKey",1000); //add to sharedprefs after
         userBudgets = new ArrayList<Budget>();
         userBudgets.add(new Budget(prefs.getFloat("transportationKey", 75), "transportation"));
         userBudgets.add(new Budget(prefs.getFloat("funKey", 150), "fun"));

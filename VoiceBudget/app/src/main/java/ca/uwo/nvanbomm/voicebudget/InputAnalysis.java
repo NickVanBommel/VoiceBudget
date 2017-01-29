@@ -53,6 +53,9 @@ public class InputAnalysis extends Activity{
         user.setBudgetLimit("transportationKey",prefs.getFloat("transportationKey", 75));
         user.setBudgetLimit("funKey",prefs.getFloat("funKey", 150));
         user.setBudgetLimit("foodKey",prefs.getFloat("foodKey", 200));
+        user.setBudgetBalance("transportationBalKey",prefs.getFloat("transportationBalKey",0));
+        user.setBudgetBalance("funBalKey",prefs.getFloat("funBalKey",0));
+        user.setBudgetBalance("foodBalKey",prefs.getFloat("foodBalKey",0));
         String voiceInput="";
         for (String word : inputList){
             voiceInput+=word+ " ";
@@ -157,7 +160,7 @@ public class InputAnalysis extends Activity{
     private boolean overBudget(float balance){
         SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
         float sumBudgets = prefs.getFloat("transportationKey", 75) + prefs.getFloat("funKey", 50) + prefs.getFloat("foodKey", 200);
-        if (sumBudgets > balance){
+        if (sumBudgets > prefs.getFloat("balanceKey",1000)){
             return false;
         } else {
             return true;
