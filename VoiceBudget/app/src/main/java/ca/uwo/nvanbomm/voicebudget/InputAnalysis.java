@@ -23,15 +23,15 @@ public class InputAnalysis{
 
         //Check for first option
         if ((voiceInput.contains("afford")||voiceInput.contains("get"))
-                &&(voiceInput.contains("dollar"))){
+                &&(voiceInput.contains("$"))){
             String[] words = voiceInput.split("\\s+");
-            int dollarAmount;
-            String buzzword;
+            int dollarAmount =5;
+            String buzzword = "car";
 
-            dollarAmount = Integer.parseInt(words[indexOf(words,"dollar")-1]);
-            buzzword = words[indexOf(words,"dollar")+1];
+            //dollarAmount = Integer.parseInt(words[indexOf(words,"dollar")-1]);
 
             //check buzzword validity, return category
+            System.out.println(user.IsFeasiblePurchase(dollarAmount,buzzword));
             return(!getCategory(buzzword).equals("none")&&user.IsFeasiblePurchase(dollarAmount,buzzword))?"yes you can":"Nope";
 
         }
