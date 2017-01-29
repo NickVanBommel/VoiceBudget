@@ -32,8 +32,8 @@
         android:id="@+id/ibtnHelp" />
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:srcCompat="@drawable/mic"
         android:radius="10dip"
         android:id="@+id/ibtnAsk"
@@ -54,6 +54,7 @@
         android:layout_toEndOf="@+id/tvResponse"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
+        android:background="@android:color/transparent"
         />
 
 </RelativeLayout>
