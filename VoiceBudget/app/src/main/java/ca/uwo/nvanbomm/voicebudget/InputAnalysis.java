@@ -5,6 +5,8 @@ import android.os.Handler;
 
 import org.xml.sax.ErrorHandler;
 
+import java.util.ArrayList;
+
 /**
  * Created by nicho on 1/28/2017.
  */
@@ -13,7 +15,11 @@ public class InputAnalysis{
 
     User user = new User();
 
-    public String parseInput(String voiceInput){
+    public String parseInput(ArrayList<String> inputList){
+        String voiceInput=" ";
+        for (String word : inputList){
+            voiceInput+=word;
+        }
 
         //Check for first option
         if ((voiceInput.contains("afford")||voiceInput.contains("get"))
@@ -61,13 +67,18 @@ public class InputAnalysis{
 
     private String getCategory(String buzzword){
         /* REFERENCE
-            0:transport
-            1:food
-            2:entertainment
+            0:transport 1:food  2:entertainment
         */
         int catnum=-1;
         String[][] categories={{"car","bus","train"},{"meal","meals","drink","snack","coffee"},
                 {"activity","bar","outing","game","book"}};
+        for  (int x = 0;x<categories.length;x++){
+            if (indexOf(categories[x],buzzword)!=-1){
+                catnum=x;
+                break;
+            }
+        }
+
     return "temp";
 
     }
