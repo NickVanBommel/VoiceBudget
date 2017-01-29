@@ -45,7 +45,7 @@ public class InputAnalysis{
 
         }
 
-        return "error";
+        return voiceInput;
     }
 
     /**
@@ -79,7 +79,13 @@ public class InputAnalysis{
             }
         }
 
-    return "temp";
+        switch(catnum){
+            case 0: return "transport";
+            case 1: return "food";
+            case 2: return "entertainment";
+            default: return "none";
+        }
+
 
     }
 }
