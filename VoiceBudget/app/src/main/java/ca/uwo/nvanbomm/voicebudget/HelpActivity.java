@@ -12,6 +12,7 @@ public class HelpActivity extends AppCompatActivity {
 
     boolean audioOn;
     String micImage;
+    int langIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,8 @@ public class HelpActivity extends AppCompatActivity {
 
         audioOn = intent.getBooleanExtra("AUDIO_ON", false);
         micImage = intent.getStringExtra("MIC_IMAGE");
+        langIndex = intent.getIntExtra("LANGUAGE", 0);
 
-        TextView tvHelp = (TextView) findViewById(R.id.tvHelp);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,7 @@ public class HelpActivity extends AppCompatActivity {
 
         intent.putExtra("AUDIO_ON", audioOn);
         intent.putExtra("MIC_IMAGE", micImage);
+        intent.putExtra("LANGUAGE", langIndex);
 
         startActivity(intent);
 

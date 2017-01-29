@@ -13,7 +13,13 @@ import java.util.Locale;
 
 public class SassyTextToSpeech {
 
+    private int langIndex;
     private TextToSpeech tts;
+
+    SassyTextToSpeech(int langToUse)
+    {
+        langIndex = langToUse;
+    }
 
     public void Initialize(final Context context){
         if (tts == null){
@@ -21,7 +27,18 @@ public class SassyTextToSpeech {
                 @Override
                 public void onInit(int i){
                     if(i != TextToSpeech.ERROR) {
-                        tts.setLanguage(Locale.UK);
+                        if (langIndex == 0)
+                        {
+                            tts.setLanguage(Locale.UK);
+                        }
+                        else if (langIndex == 1)
+                        {
+                            tts.setLanguage(Locale.US);
+                        }
+                        else if (langIndex == 2)
+                        {
+                            tts.setLanguage(Locale.GERMAN);
+                        }
                     }
                 }
             });

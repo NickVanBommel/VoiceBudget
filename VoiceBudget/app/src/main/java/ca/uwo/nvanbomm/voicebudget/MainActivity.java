@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
     float funBudget;
     float foodBudget;
     String micImage;
+    int langIndex;
 
 
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
         Intent intent = getIntent();
 
         audioOn = intent.getBooleanExtra("AUDIO_ON", false);
+        langIndex = intent.getIntExtra("LANGUAGE", 0);
 
         SharedPreferences prefs = getSharedPreferences(PREFS_FILE, 0);
         transportationBudget = prefs.getFloat("transportationKey", 75);
@@ -72,7 +74,7 @@ public class MainActivity extends Activity {
             micImage = "Google";
         }
 
-        readAloud = new SassyTextToSpeech();
+        readAloud = new SassyTextToSpeech(langIndex);
         readAloud.Initialize(getApplicationContext());
         ibtnAsk.setOnClickListener(new OnClickListener() {
             @Override
@@ -102,6 +104,9 @@ public class MainActivity extends Activity {
     public void selectHelp(View view)
     {
         Intent intent = new Intent(this, HelpActivity.class);
+        intent.putExtra("AUDIO_ON", audioOn);
+        intent.putExtra("MIC_IMAGE", micImage);
+        intent.putExtra("LANGUAGE", langIndex);
         startActivity(intent);
     }
     public void selectSettings(View view)
@@ -110,6 +115,7 @@ public class MainActivity extends Activity {
 
         intent.putExtra("AUDIO_ON", audioOn);
         intent.putExtra("MIC_IMAGE", micImage);
+        intent.putExtra("LANGUAGE", langIndex);
 
         startActivity(intent);
     }
