@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
@@ -16,6 +17,8 @@ public class SettingsActivity extends AppCompatActivity {
     ImageButton ibtnDeltaMic;
 
     ImageButton ibtnAndy;
+
+    Button btnSave;
 
     Switch swtAudio;
 
@@ -28,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
         ibtnDeltaMic = (ImageButton) findViewById(R.id.ibtnDeltaMic);
         ibtnAndy = (ImageButton) findViewById(R.id.ibtnAndy);
+        btnSave = (Button) findViewById(R.id.btnSave);
         swtAudio = (Switch) findViewById(R.id.swtAudio);
 
         ibtnGoogleMic.setOnClickListener(new View.OnClickListener() {
@@ -57,5 +61,37 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectSave(v);
+            }
+        });
+
+        swtAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (swtAudio.isChecked())
+                {
+                    swtAudio.setText("On");
+                }
+                else
+                {
+                    swtAudio.setText("Off");
+                }
+            }
+
+        });
+
+    }
+
+    public void selectSave(View v)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+
+        
+
+
+        startActivity(intent);
     }
 }
