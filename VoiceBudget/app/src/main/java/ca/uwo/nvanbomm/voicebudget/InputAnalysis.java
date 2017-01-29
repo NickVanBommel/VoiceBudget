@@ -18,7 +18,7 @@ public class InputAnalysis{
     public String parseInput(ArrayList<String> inputList){
         String voiceInput=" ";
         for (String word : inputList){
-            voiceInput+=word;
+            voiceInput+=word+ " ";
         }
 
         //Check for first option
