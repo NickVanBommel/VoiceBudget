@@ -52,7 +52,7 @@ public class InputAnalysis{
                     break;
                 }
             }
-            return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself ;)":"You Wish!";
+            return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself. ;)":"You wish. You've scraped enough out of your budget for this month.";
         }
 
         //check for budget
@@ -68,7 +68,7 @@ public class InputAnalysis{
                     break;
                 }
             }
-            return "You have $"+user.GetBudgetRemainder(category)+" remaining out of $"+user.GetBudgetLimit(category);
+            return "You have $"+user.GetBudgetRemainder(category)+" remaining out of $"+user.GetBudgetLimit(category)+". Impressive.";
 
         }
 
@@ -82,7 +82,7 @@ public class InputAnalysis{
                     break;
                 }
             }
-            return "You have $"+user.GetGeneralBalance()+" in your bank account!";
+            return "You have $"+user.GetGeneralBalance()+" in your bank account! You're basically rolling in cash.";
 
         }
 
