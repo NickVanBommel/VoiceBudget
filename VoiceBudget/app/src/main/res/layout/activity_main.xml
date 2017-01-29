@@ -10,7 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.uwo.nvanbomm.voicebudget.MainActivity"
-    android:background="@drawable/grad_background">
+    android:background="@drawable/grad_background"
+    android:screenOrientation="portrait">
 
     <TextView
         android:layout_width="wrap_content"
