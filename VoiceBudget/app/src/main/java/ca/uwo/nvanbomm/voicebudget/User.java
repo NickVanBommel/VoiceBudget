@@ -9,24 +9,24 @@ import java.util.ArrayList;
 
 
 public class User {
-    int balance;
+    float balance;
     ArrayList<Budget> userBudgets;
 
 
     User() {
         balance = 10000;
         userBudgets = new ArrayList<Budget>();
-        userBudgets.add(new Budget(75*100, "transportation"));
-        userBudgets.add(new Budget(150*100, "fun"));
-        userBudgets.add(new Budget(100*100, "food"));
-        userBudgets.add(new Budget(400*100, "groceries"));
+        userBudgets.add(new Budget(75, "transportation"));
+        userBudgets.add(new Budget(150, "fun"));
+        userBudgets.add(new Budget(100, "food"));
+        userBudgets.add(new Budget(400, "groceries"));
     }
 
-    int GetGeneralBalance(){
+    float GetGeneralBalance(){
         return balance;
     }
 
-    int GetBudgetLimit(String budgetName){
+    float GetBudgetLimit(String budgetName){
         for(int i = 0; i < userBudgets.size(); i++){
             if (userBudgets.get(i).getName() == budgetName){
                 return userBudgets.get(i).getLimit();
@@ -34,7 +34,7 @@ public class User {
         }
         return 0;
     }
-    int GetBudgetBalance(String budgetName){
+    float GetBudgetBalance(String budgetName){
         for(int i = 0; i < userBudgets.size(); i++){
             if (userBudgets.get(i).getName() == budgetName){
                 return userBudgets.get(i).getBalance();
@@ -43,16 +43,16 @@ public class User {
         return 0;
     }
 
-    int GetBudgetRemainder(String budgetName){
-        int budgetBalance = GetBudgetBalance(budgetName);
-        int budgetLimit = GetBudgetLimit(budgetName);
+    float GetBudgetRemainder(String budgetName){
+        float budgetBalance = GetBudgetBalance(budgetName);
+        float budgetLimit = GetBudgetLimit(budgetName);
         return budgetLimit - budgetBalance;
     }
 
-    boolean IsFeasiblePurchase(int cost, String budgetName){
-        int budgetBalance = GetBudgetBalance(budgetName);
-        int budgetLimit = GetBudgetLimit(budgetName);
-        if (cost+budgetBalance < budgetLimit){
+    boolean IsFeasiblePurchase(float cost, String budgetName){
+        float budgetBalance = GetBudgetBalance(budgetName);
+        float budgetLimit = GetBudgetLimit(budgetName);
+        if (cost+budgetBalance <= budgetLimit){
             return true;
         } else {
             return false;

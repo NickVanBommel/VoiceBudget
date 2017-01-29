@@ -22,28 +22,47 @@ public class InputAnalysis{
         }
 
         //Check for first option
-        if ((voiceInput.contains("afford")||voiceInput.contains("get"))
+        if ((voiceInput.contains("afford")||voiceInput.contains("get")||voiceInput.contains("order"))
                 &&(voiceInput.contains("$"))){
             String[] words = voiceInput.split("\\s+");
-            int dollarAmount =5;
-            String buzzword = "car";
+            float dollarAmount =-1;
+            for (String str: words){
+                if (str.length()!=0 && str.charAt(0) == '$'){
+                    dollarAmount=Float.parseFloat(str.substring(1));
+                    break;
+                }
+            }
+            if (dollarAmount < 0){
+                return "Didn't catch that, please repeat!";
+            }
+            String category="none";
+            for (String word : words){
+                if (!getCategory(word).equals("none")) {
+                    category = getCategory(word);
+                    break;
+                }
+            }
 
             //dollarAmount = Integer.parseInt(words[indexOf(words,"dollar")-1]);
 
             //check buzzword validity, return category
-            System.out.println(user.IsFeasiblePurchase(dollarAmount,getCategory(buzzword)));
-            System.out.println(getCategory(buzzword));
-            return(!getCategory(buzzword).equals("none")&&user.IsFeasiblePurchase(dollarAmount,getCategory(buzzword)))?"yes you can":"Nope";
+            System.out.println(user.IsFeasiblePurchase(dollarAmount,category));
+            System.out.println(category);
+            return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself ;)":"You Wish!";
 
         }
 
         //check for second option
-        else if (voiceInput.contains("remaining budget")&&voiceInput.contains("for")){
+        else if (voiceInput.contains("budget")){
             String[] words = voiceInput.split("\\s+");
-            String buzzword;
-            buzzword = words[indexOf(words,"for")+1];
-
-            //check buzzword validity, return category
+            String category="none";
+            for (String word : words){
+                if (!getCategory(word).equals("none")) {
+                    category = getCategory(word);
+                    break;
+                }
+            }
+            return ""+user.GetBudgetRemainder(category);
 
         }
 
@@ -72,8 +91,8 @@ public class InputAnalysis{
             0:transport 1:food  2:entertainment
         */
         int catnum=-1;
-        String[][] categories={{"car","bus","train"},{"meal","meals","drink","snack","coffee"},
-                {"activity","bar","outing","game","book"}};
+        String[][] categories={{"car","bus","train","transport","transportation"},{"meal","meals","drink","snack","coffee","food"},
+                {"activity","bar","outing","game","book","fun","out"}};
         for (int x = 0;x<categories.length;x++){
             if (indexOf(categories[x],buzzword)!=-1){
 
@@ -84,7 +103,7 @@ public class InputAnalysis{
         switch(catnum){
             case 0: return "transportation";
             case 1: return "food";
-            case 2: return "entertainment";
+            case 2: return "fun";
             default: return "none";
         }
     }
