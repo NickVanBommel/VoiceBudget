@@ -112,8 +112,8 @@ public class MainActivity extends Activity {
                 SharedPreferences prefs = getSharedPreferences(PREFS_FILE, 0);
                 SharedPreferences.Editor editor = prefs.edit();
 
-                System.out.println("category: "+ia.getCategory());
-                editor.putFloat(ia.getCategory() + "BalKey", prefs.getFloat(ia.getCategory() + "BalKey", 0) - ia.getDollarAmount());
+                System.out.println("category: "+prefs.getFloat(ia.getCategory() + "BalKey", 0));
+                editor.putFloat(ia.getCategory() + "BalKey", prefs.getFloat(ia.getCategory() + "BalKey", 0) + ia.getDollarAmount());
                 editor.putFloat("balanceKey", prefs.getFloat("balanceKey", 1000) - ia.getDollarAmount());
                 editor.commit();
                 tvResponse.setText("You spent " + ia.getDollarAmount() + "!!");

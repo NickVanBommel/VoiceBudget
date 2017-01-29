@@ -21,6 +21,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     ImageButton ibtnAndy;
 
+    ImageButton ibtnLogo;
+
     Button btnSave;
 
     Switch swtAudio;
@@ -50,6 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
         ibtnDeltaMic = (ImageButton) findViewById(R.id.ibtnDeltaMic);
         ibtnAndy = (ImageButton) findViewById(R.id.ibtnAndy);
+        ibtnLogo = (ImageButton) findViewById(R.id.ibtnLogo);
         btnSave = (Button) findViewById(R.id.btnSave);
         swtAudio = (Switch) findViewById(R.id.swtAudio);
         rgrpGroup = (RadioGroup) findViewById(R.id.rgrpGroup);
@@ -74,6 +77,7 @@ public class SettingsActivity extends AppCompatActivity {
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnLogo.setBackgroundResource(R.drawable.roundedbutton);
         }
         else if (micImage.equals("Delta"))
         {
@@ -81,6 +85,7 @@ public class SettingsActivity extends AppCompatActivity {
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnLogo.setBackgroundResource(R.drawable.roundedbutton);
         }
         else if (micImage.equals("Andy"))
         {
@@ -88,6 +93,15 @@ public class SettingsActivity extends AppCompatActivity {
             ibtnAndy.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnLogo.setBackgroundResource(R.drawable.roundedbutton);
+        }
+        else if (micImage.equals("Logo"))
+        {
+            micIndex = 3;
+            ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnLogo.setBackgroundResource(R.drawable.roundedbuttonselected);
         }
         if (langIndex == 0)
         {
@@ -110,6 +124,7 @@ public class SettingsActivity extends AppCompatActivity {
                 ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
                 ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbuttonselected);
                 ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+                ibtnLogo.setBackgroundResource(R.drawable.roundedbutton);
             }
         });
 
@@ -120,6 +135,7 @@ public class SettingsActivity extends AppCompatActivity {
                 ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
                 ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbuttonselected);
                 ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+                ibtnLogo.setBackgroundResource(R.drawable.roundedbutton);
             }
         });
 
@@ -130,6 +146,18 @@ public class SettingsActivity extends AppCompatActivity {
                 ibtnAndy.setBackgroundResource(R.drawable.roundedbuttonselected);
                 ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
                 ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
+                ibtnLogo.setBackgroundResource(R.drawable.roundedbutton);
+            }
+        });
+
+        ibtnLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                micIndex = 3;
+                ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+                ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
+                ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
+                ibtnLogo.setBackgroundResource(R.drawable.roundedbuttonselected);
             }
         });
 
@@ -172,6 +200,10 @@ public class SettingsActivity extends AppCompatActivity {
         else if(micIndex == 2)
         {
             intent.putExtra("MIC_IMAGE", "Andy");
+        }
+        else if(micIndex == 3)
+        {
+            intent.putExtra("MIC_IMAGE", "Logo");
         }
 
         if (rbtnUK.isChecked())
