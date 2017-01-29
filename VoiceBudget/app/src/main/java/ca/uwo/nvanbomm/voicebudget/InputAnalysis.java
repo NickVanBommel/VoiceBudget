@@ -8,13 +8,19 @@ import org.xml.sax.ErrorHandler;
 import java.util.ArrayList;
 
 /**
- * Created by nicho on 1/28/2017.
+ * Created by Andy on 1/28/2017.
  */
 
 public class InputAnalysis{
 
     User user = new User();
 
+    /**
+     * takes input from voice and reacts accordingly. options are check for affordability, check
+     * remaining budget, and get account balance.
+     * @param inputList list of input strings from the voice input
+     * @return the appropriate response to the asked question.
+     */
     public String parseInput(ArrayList<String> inputList){
         String voiceInput=" ";
         for (String word : inputList){
@@ -43,14 +49,7 @@ public class InputAnalysis{
                     break;
                 }
             }
-
-            //dollarAmount = Integer.parseInt(words[indexOf(words,"dollar")-1]);
-
-            //check buzzword validity, return category
-            System.out.println(user.IsFeasiblePurchase(dollarAmount,category));
-            System.out.println(category);
             return(!category.equals("none")&&user.IsFeasiblePurchase(dollarAmount,category))?"Treat yourself ;)":"You Wish!";
-
         }
 
         //check for budget
@@ -84,7 +83,7 @@ public class InputAnalysis{
 
         }
 
-        return voiceInput;
+        return "Invalid command";
     }
 
     /**
@@ -104,6 +103,11 @@ public class InputAnalysis{
         return index;
     }
 
+    /**
+     * Returns the category of the given "buzzword" (descriptor)
+     * @param buzzword the word for which you want a category
+     * @return the category of the buzzword
+     */
     private String getCategory(String buzzword){
         /* REFERENCE
             0:transport 1:food  2:entertainment
