@@ -22,10 +22,13 @@ public class InputAnalysis{
      * @return the appropriate response to the asked question.
      */
     public String parseInput(ArrayList<String> inputList){
-        String voiceInput=" ";
+        String voiceInput="";
         for (String word : inputList){
             voiceInput+=word+ " ";
         }
+        voiceInput=voiceInput.toLowerCase();
+        System.out.println(voiceInput);
+
 
         //Check for affordability
         if ((voiceInput.contains("afford")||voiceInput.contains("get")||voiceInput.contains("order")||voiceInput.contains("buy")||voiceInput.contains("purchase")
@@ -54,7 +57,7 @@ public class InputAnalysis{
 
         //check for budget
         else if (voiceInput.contains("budget")||voiceInput.contains(" for ")||
-                (voiceInput.contains("how much")&&voiceInput.contains(" on "))||
+                (voiceInput.contains("how much")&&(voiceInput.contains(" on ")||voiceInput.contains("afford")))||
                 (voiceInput.contains(" most ")&&(voiceInput.contains(" on ")||voiceInput.contains(" at ")))){
             System.out.println(voiceInput.contains(" on "));
             String[] words = voiceInput.split("\\s+");
@@ -70,7 +73,7 @@ public class InputAnalysis{
         }
 
         //check balance
-        else if (voiceInput.contains("balance")||voiceInput.contains("money")){
+        else if (voiceInput.contains("balance")||voiceInput.contains("money")||voiceInput.contains("cash")){
             String[] words = voiceInput.split("\\s+");
             String category="none";
             for (String word : words){

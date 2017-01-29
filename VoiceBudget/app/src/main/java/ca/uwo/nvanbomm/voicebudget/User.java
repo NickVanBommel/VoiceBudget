@@ -59,5 +59,14 @@ public class User {
         }
     }
 
+    void spend(int index, float amount){
+        userBudgets.get(index).setBalance(userBudgets.get(index).getBalance()+amount);
+    }
+
+    void setBudgetLimit(int index, float limit){
+        //0=transportation, 1=fun, 2=food
+        userBudgets.get(index).setLimit(limit);
+    }
+
 
 }

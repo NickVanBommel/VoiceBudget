@@ -5,8 +5,8 @@ package ca.uwo.nvanbomm.voicebudget;
  */
 
 public class Budget {
-    int limit;
-    int balance;
+    float limit;
+    float balance;
     String name;
 
     //Constructors-----------------------------------------------------------------------
@@ -16,7 +16,7 @@ public class Budget {
      * @param cLimit the budget limit
      * @param cName the name of the budget
      */
-    public Budget(int cLimit, String cName){
+    public Budget(float cLimit, String cName){
         limit = cLimit;
         name=cName;
     }
@@ -28,17 +28,17 @@ public class Budget {
      * Used to spend the given amount of money. adds to balance
      * @param amount amount of money to spend
      */
-    public void spend(int amount){
+    public void spend(float amount){
         balance += amount;
     }
 
     //Get/Set functions-------------------------------------------------------------------
 
-    public int getLimit() {
+    public float getLimit() {
         return limit;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
@@ -46,11 +46,11 @@ public class Budget {
         return name;
     }
 
-    public void setLimit(int limit) {
+    public void setLimit(float limit) {
         this.limit = limit;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 
