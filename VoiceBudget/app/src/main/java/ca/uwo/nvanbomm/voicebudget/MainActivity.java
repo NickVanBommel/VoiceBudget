@@ -3,6 +3,7 @@ package ca.uwo.nvanbomm.voicebudget;
 import android.os.Bundle;
 import android.app.Activity;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -17,6 +18,8 @@ public class MainActivity extends Activity {
 
 
     private static final int REQ_CODE = 666;
+    private SassyTextToSpeech readAloud;
+    private boolean audioOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +28,19 @@ public class MainActivity extends Activity {
 
         Intent intent = getIntent();
 
-        boolean audioOn = intent.getBooleanExtra("AUDIO_ON", false);
+        audioOn = intent.getBooleanExtra("AUDIO_ON", false);
         
         ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
         final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
         final ImageButton ibtnSettings = (ImageButton) findViewById(R.id.ibtnSettings);
+        readAloud.Initialize(getApplicationContext());
         ibtnAsk.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                SassyTextToSpeech.Initialize(getApplicationContext());
+                if (readAloud.SpeakingRn()){
+                    readAloud.StopTalking();
+                }
                 StartVoiceRecognition();
             }
         });
@@ -78,7 +84,11 @@ public class MainActivity extends Activity {
             ArrayList<String> hits = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             TextView responseText = (TextView) findViewById(R.id.tvResponse);
             InputAnalysis ia = new InputAnalysis();
-            responseText.setText(ia.parseInput(hits));
+            String output = ia.parseInput(hits);
+            responseText.setText(output);
+            if (audioOn) {
+                readAloud.Speaking(output);
+            }
         }
     }
 
