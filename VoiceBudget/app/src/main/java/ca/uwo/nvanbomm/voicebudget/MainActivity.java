@@ -148,6 +148,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        btnSpend.setVisibility(View.INVISIBLE);
         if (requestCode == REQ_CODE && resultCode == RESULT_OK && null != data){
             ArrayList<String> hits = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             TextView responseText = (TextView) findViewById(R.id.tvResponse);
