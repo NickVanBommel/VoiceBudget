@@ -22,7 +22,8 @@ public class InputAnalysis{
         }
 
         //Check for affordability
-        if ((voiceInput.contains("afford")||voiceInput.contains("get")||voiceInput.contains("order"))
+        if ((voiceInput.contains("afford")||voiceInput.contains("get")||voiceInput.contains("order")||voiceInput.contains("buy")||voiceInput.contains("purchase")
+                ||voiceInput.contains("spend"))
                 &&(voiceInput.contains("$"))){
             String[] words = voiceInput.split("\\s+");
             float dollarAmount =-1;
@@ -53,7 +54,10 @@ public class InputAnalysis{
         }
 
         //check for budget
-        else if (voiceInput.contains("budget")){
+        else if (voiceInput.contains("budget")||voiceInput.contains(" for ")||
+                (voiceInput.contains("how much")&&voiceInput.contains(" on "))||
+                (voiceInput.contains(" most ")&&(voiceInput.contains(" on ")||voiceInput.contains(" at ")))){
+            System.out.println(voiceInput.contains(" on "));
             String[] words = voiceInput.split("\\s+");
             String category="none";
             for (String word : words){
@@ -105,7 +109,7 @@ public class InputAnalysis{
             0:transport 1:food  2:entertainment
         */
         int catnum=-1;
-        String[][] categories={{"car","bus","train","transport","transportation"},{"meal","meals","drink","snack","coffee","food"},
+        String[][] categories={{"car","bus","train","transport","transportation"},{"meal","meals","drink","drinks","snack","coffee","food"},
                 {"activity","bar","outing","game","book","fun","out"}};
         for (int x = 0;x<categories.length;x++){
             if (indexOf(categories[x],buzzword)!=-1){
