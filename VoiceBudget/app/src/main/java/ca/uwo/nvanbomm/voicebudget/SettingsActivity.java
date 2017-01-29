@@ -53,21 +53,21 @@ public class SettingsActivity extends AppCompatActivity {
             swtAudio.setText("Off");
         }
 
-        if (micImage == "Google")
+        if (micImage.equals("Google"))
         {
             micIndex = 0;
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
         }
-        else if (micImage == "Delta")
+        else if (micImage.equals("Delta"))
         {
             micIndex = 1;
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbuttonselected);
             ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
         }
-        else if (micImage == "Andy")
+        else if (micImage.equals("Andy"))
         {
             micIndex = 2;
             ibtnAndy.setBackgroundResource(R.drawable.roundedbuttonselected);

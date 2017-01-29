@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
     float transportationBudget;
     float funBudget;
     float foodBudget;
+    String micImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class MainActivity extends Activity {
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
         final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
         final ImageButton ibtnSettings = (ImageButton) findViewById(R.id.ibtnSettings);
-        final String micImage = intent.getStringExtra("MIC_IMAGE");
+        micImage = intent.getStringExtra("MIC_IMAGE");
         if (micImage != null)
         {
             if (micImage.equals("Google"))
@@ -64,6 +66,10 @@ public class MainActivity extends Activity {
             {
                 ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.andy));
             }
+        }
+        else
+        {
+            micImage = "Google";
         }
 
         readAloud = new SassyTextToSpeech();
@@ -101,6 +107,10 @@ public class MainActivity extends Activity {
     public void selectSettings(View view)
     {
         Intent intent = new Intent(this, SettingsActivity.class);
+
+        intent.putExtra("AUDIO_ON", audioOn);
+        intent.putExtra("MIC_IMAGE", micImage);
+
         startActivity(intent);
     }
 
