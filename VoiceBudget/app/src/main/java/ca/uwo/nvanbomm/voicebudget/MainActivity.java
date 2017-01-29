@@ -16,7 +16,8 @@ import android.content.Intent;
 
 import java.util.ArrayList;
 import ca.uwo.nvanbomm.voicebudget.InputAnalysis;
-
+import ca.uwo.nvanbomm.voicebudget.VoiceRecognition;
+import android.content.Context;
 
 public class MainActivity extends Activity {
 
@@ -29,7 +30,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ImageButton speakButton = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
-
+        //final Context con = this;
         speakButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
