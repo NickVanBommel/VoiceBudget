@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
     float foodBudget;
     String micImage;
     int langIndex;
+    Button btnSpend;
 
 
     @Override
@@ -54,7 +55,7 @@ public class MainActivity extends Activity {
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
         final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
         final ImageButton ibtnSettings = (ImageButton) findViewById(R.id.ibtnSettings);
-        final Button btnSpend = (Button) findViewById(R.id.btnSpend);
+        btnSpend = (Button) findViewById(R.id.btnSpend);
 
         micImage = intent.getStringExtra("MIC_IMAGE");
         if (micImage != null)
@@ -106,7 +107,7 @@ public class MainActivity extends Activity {
         btnSpend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                btnSpend.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -147,6 +148,7 @@ public class MainActivity extends Activity {
             responseText.setText(output);
             if (audioOn) {
                 readAloud.Speaking(output);
+                btnSpend.setVisibility(View.VISIBLE);
             }
         }
     }
