@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -25,6 +27,14 @@ public class SettingsActivity extends AppCompatActivity {
 
     int micIndex;
 
+    RadioGroup rgrpGroup;
+
+    RadioButton rbtnUS;
+
+    RadioButton rbtnUK;
+
+    RadioButton rbtnGER;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         final boolean audioOn = intent.getBooleanExtra("AUDIO_ON", false);
         final String micImage = intent.getStringExtra("MIC_IMAGE");
+        final int langIndex = intent.getIntExtra("LANGUAGE", 0);
 
         micIndex = 0;
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
@@ -41,6 +52,10 @@ public class SettingsActivity extends AppCompatActivity {
         ibtnAndy = (ImageButton) findViewById(R.id.ibtnAndy);
         btnSave = (Button) findViewById(R.id.btnSave);
         swtAudio = (Switch) findViewById(R.id.swtAudio);
+        rgrpGroup = (RadioGroup) findViewById(R.id.rgrpGroup);
+        rbtnUS = (RadioButton) findViewById(R.id.rbtnUS);
+        rbtnUK = (RadioButton) findViewById(R.id.rbtnUK);
+        rbtnGER = (RadioButton) findViewById(R.id.rbtnGER);
 
         swtAudio.setChecked(audioOn);
 
@@ -74,6 +89,19 @@ public class SettingsActivity extends AppCompatActivity {
             ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
             ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
         }
+        if (langIndex == 0)
+        {
+            rbtnUK.setChecked(true);
+        }
+        else if (langIndex == 1)
+        {
+            rbtnUS.setChecked(true);
+        }
+        else if (langIndex == 2)
+        {
+            rbtnGER.setChecked(true);
+        }
+
 
         ibtnGoogleMic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,9 +152,7 @@ public class SettingsActivity extends AppCompatActivity {
                     swtAudio.setText("Off");
                 }
             }
-
         });
-
     }
 
     public void selectSave(View v)
@@ -146,6 +172,19 @@ public class SettingsActivity extends AppCompatActivity {
         else if(micIndex == 2)
         {
             intent.putExtra("MIC_IMAGE", "Andy");
+        }
+
+        if (rbtnUK.isChecked())
+        {
+            intent.putExtra("LANGUAGE", 0);
+        }
+        else if (rbtnUS.isChecked())
+        {
+            intent.putExtra("LANGUAGE", 1);
+        }
+        else if (rbtnGER.isChecked())
+        {
+            intent.putExtra("LANGUAGE", 2);
         }
 
         startActivity(intent);

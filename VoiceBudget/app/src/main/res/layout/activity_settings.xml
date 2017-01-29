@@ -69,17 +69,6 @@
         android:id="@+id/textView5"
         android:textSize="18sp" />
 
-    <Switch
-        android:text="Off"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
-        android:layout_alignRight="@+id/ibtnDeltaMic"
-        android:layout_alignEnd="@+id/ibtnDeltaMic"
-        android:layout_marginTop="30dp"
-        android:id="@+id/swtAudio"
-        android:checked="false" />
-
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -98,11 +87,56 @@
         android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/swtAudio"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="58dp"
         android:id="@+id/btnSave"
-        android:elevation="0dp" />
+        android:elevation="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/textView5"
+        android:layout_toEndOf="@+id/textView5"
+        android:layout_marginBottom="27dp" />
+
+    <Switch
+        android:text="Off"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/swtAudio"
+        android:checked="false"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_toRightOf="@+id/ibtnDeltaMic"
+        android:layout_toEndOf="@+id/ibtnDeltaMic" />
+
+    <TextView
+        android:text="Audio Language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:id="@+id/textView9"
+        android:textSize="18sp"
+        android:layout_below="@+id/swtAudio"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
+
+    <RadioGroup
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_alignLeft="@+id/swtAudio"
+        android:layout_alignStart="@+id/swtAudio"
+        android:id="@+id/rgrpGroup">
+        <RadioButton android:id="@+id/rbtnUK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English-UK"
+            />
+        <RadioButton android:id="@+id/rbtnUS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English-US"
+            />
+        <RadioButton android:id="@+id/rbtnGER"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="German"
+            />
+    </RadioGroup>
 
 </RelativeLayout>
