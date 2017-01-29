@@ -19,6 +19,8 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import java.util.ArrayList;
+
 import ai.api.android.AIConfiguration;
 import ai.api.model.AIError;
 import ai.api.model.AIResponse;
@@ -32,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+    User currUser = new User();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        User currUser = new User();
         ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
         final InputAnalysis analyzer;
@@ -100,5 +103,6 @@ public class MainActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
 
 }
