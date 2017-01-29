@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         Intent intent = getIntent();
 
         audioOn = intent.getBooleanExtra("AUDIO_ON", false);
-        
+
         ImageButton ibtnAsk = (ImageButton) findViewById(R.id.ibtnAsk);
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
         final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
