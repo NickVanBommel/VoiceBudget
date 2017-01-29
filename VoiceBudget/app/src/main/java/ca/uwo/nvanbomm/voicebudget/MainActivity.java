@@ -147,12 +147,22 @@ public class MainActivity extends Activity {
             InputAnalysis ia = new InputAnalysis(getApplicationContext());
             String output = ia.parseInput(hits);
             responseText.setText(output);
+            parseForButton(output);
             //
             if (audioOn) {
                 readAloud.Speaking(output);
             }
         }
     }
+
+    public void parseForButton(String output)
+    {
+        if (output.contains("Treat yourself"))
+        {
+            btnSpend.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 
 
