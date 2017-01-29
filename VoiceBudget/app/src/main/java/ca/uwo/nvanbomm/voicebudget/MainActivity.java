@@ -38,15 +38,15 @@ public class MainActivity extends Activity {
         final String micImage = intent.getStringExtra("MIC_IMAGE");
         if (micImage != null)
         {
-            if (micImage == "Google")
+            if (micImage.equals("Google"))
             {
                 ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.mic));
             }
-            else if (micImage == "Delta")
+            else if (micImage.equals("Delta"))
             {
                 ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.deltahacks));
             }
-            else if (micImage == "Andy")
+            else if (micImage.equals("Andy"))
             {
                 ibtnAsk.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.andy));
             }
