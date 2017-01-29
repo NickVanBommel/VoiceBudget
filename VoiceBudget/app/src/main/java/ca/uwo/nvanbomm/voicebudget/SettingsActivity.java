@@ -29,13 +29,35 @@ public class SettingsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-
+        final boolean audioOn = intent.getBooleanExtra("AUDIO_ON", false);
+        final String micImage = intent.getStringExtra("MIC_IMAGE");
 
         ibtnGoogleMic = (ImageButton) findViewById(R.id.ibtnGoogleMic);
         ibtnDeltaMic = (ImageButton) findViewById(R.id.ibtnDeltaMic);
         ibtnAndy = (ImageButton) findViewById(R.id.ibtnAndy);
         btnSave = (Button) findViewById(R.id.btnSave);
         swtAudio = (Switch) findViewById(R.id.swtAudio);
+
+        swtAudio.setChecked(audioOn);
+
+        if (micImage == "Google")
+        {
+            ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbuttonselected);
+            ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+        }
+        else if (micImage == "Delta")
+        {
+            ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbuttonselected);
+            ibtnAndy.setBackgroundResource(R.drawable.roundedbutton);
+        }
+        else if (micImage == "Andy")
+        {
+            ibtnAndy.setBackgroundResource(R.drawable.roundedbuttonselected);
+            ibtnGoogleMic.setBackgroundResource(R.drawable.roundedbutton);
+            ibtnDeltaMic.setBackgroundResource(R.drawable.roundedbutton);
+        }
 
         ibtnGoogleMic.setOnClickListener(new View.OnClickListener() {
             @Override
