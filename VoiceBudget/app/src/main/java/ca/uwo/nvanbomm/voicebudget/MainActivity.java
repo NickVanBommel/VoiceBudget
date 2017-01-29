@@ -1,23 +1,17 @@
 package ca.uwo.nvanbomm.voicebudget;
 
-import android.net.Uri;
-import android.os.Handler;
 import android.os.Bundle;
 import android.app.Activity;
-import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.content.Intent;
 
 import java.util.ArrayList;
-import ca.uwo.nvanbomm.voicebudget.InputAnalysis;
-import ca.uwo.nvanbomm.voicebudget.VoiceRecognition;
-import android.content.Context;
+
+import ca.uwo.nvanbomm.voicebudget.SassyTextToSpeech;
 
 public class MainActivity extends Activity {
 
@@ -32,10 +26,10 @@ public class MainActivity extends Activity {
         final TextView tvResponse = (TextView) findViewById(R.id.tvResponse);
         final ImageButton ibtnHelp = (ImageButton) findViewById(R.id.ibtnHelp);
         final ImageButton ibtnSettings = (ImageButton) findViewById(R.id.ibtnSettings);
-        //final Context con = this;
         ibtnAsk.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                SassyTextToSpeech.Initialize(getApplicationContext());
                 StartVoiceRecognition();
             }
         });
